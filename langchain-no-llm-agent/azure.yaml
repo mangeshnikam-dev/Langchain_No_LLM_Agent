@@ -1,3 +1,28 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
 name: langchain-no-llm-agent
+services:
+    AgenticAI:
+        host: azure.ai.project
+        endpoint: https://mangesh-foundry-eastus2.services.ai.azure.com/api/projects/AgenticAI
+    langchain-no-llm-agent:
+        project: src/langchain-no-llm-agent
+        host: azure.ai.agent
+        language: docker
+        image: mangeshagentacr.azurecr.io/langchain-no-llm-agent:v3
+        docker:
+            remoteBuild: true
+        uses:
+            - AgenticAI
+        container:
+            resources:
+                cpu: "0.5"
+                memory: 1Gi
+        description: Hosted container agent using pre-built image mangeshagentacr.azurecr.io/langchain-no-llm-agent:v2
+        kind: hosted
+        name: langchain-no-llm-agent
+        protocols:
+            - protocol: invocations
+              version: 1.0.0
+infra:
+    provider: microsoft.foundry

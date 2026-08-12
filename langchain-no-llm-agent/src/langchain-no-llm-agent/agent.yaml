@@ -1,0 +1,8 @@
+name: langchain-no-llm-agent
+template:
+    description: Hosted container agent using pre-built image mangeshagentacr.azurecr.io/langchain-no-llm-agent:v2
+    kind: hosted
+    name: langchain-no-llm-agent
+    protocols:
+        - protocol: responses
+          version: 2.0.0
